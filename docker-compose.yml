@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+    rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+            - '5672:5672'
+            - '15672:15672'
+        environment:
+            RABBITMQ_DEFAULT_USER: guest
+            RABBITMQ_DEFAULT_PASS: guest
+        healthcheck:
+            test: ['CMD', 'rabbitmqctl', 'status']
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    email-service:
+        build: .
+        environment:
+            - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+            - ZEPTOMAIL_TOKEN=your_token_here
+            - NODE_ENV=development
+        depends_on:
+            rabbitmq:
+                condition: service_healthy
+        ports:
+            - '3001:3001'
