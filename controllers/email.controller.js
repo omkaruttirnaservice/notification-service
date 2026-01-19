@@ -1,10 +1,11 @@
 const { SendMailClient } = require('zeptomail');
 const config = require('../config');
 const templates = {
-    registration: require('../templates/registration.template'),
-    hallTicket: require('../templates/hallTicket.template'),
-    summary: require('../templates/summary.template'),
-    forgotUsernameOtp: require('../templates/forgotOtp.template'),
+    REGISTRATION_EMAIL_V1: require('../templates/registration.template'),
+    HALLTICKET_EMAIL_V1: require('../templates/hallTicket.template'),
+    SUMMARY_EMAIL_V1: require('../templates/summary.template'),
+    FORGOT_OTP_EMAIL_V1: require('../templates/forgotOtp.template'),
+
     verifyEmailOtp: require('../templates/verifyOtp.template'),
     paymentSuccess: require('../templates/paymentSuccess.template'),
     paymentPending: require('../templates/paymentPending.template'),
@@ -23,21 +24,21 @@ class EmailController {
      * @param {Object} message - The message object from RabbitMQ
      */
     async processMessage(message) {
-        const { type, email, payload, emailConfigs } = message;
-        console.log({ payload, emailConfigs }, '=message');
+        const { templateId, email, payload } = message;
+        console.log({ ...payload }, '=message');
 
-        console.log('emailConfigs', emailConfigs);
+        // console.log('emailConfigs', emailConfigs);
 
-        if (!templates[type]) {
-            throw new Error(`Unknown email type: ${type}`);
+        if (!templates[templateId]) {
+            throw new Error(`Unknown templateId: ${templateId}`);
         }
 
-        const template = templates[type];
-        const subject = template.subject({ ...payload, ...emailConfigs });
-        const htmlBody = template.email({ ...payload, ...emailConfigs });
+        const template = templates[templateId];
+        const subject = template.subject({ ...payload });
+        const htmlBody = template.email({ ...payload });
 
-        const fromAddress = emailConfigs?.emailFrom || config.zeptomail.senderEmail;
-        const fromName = emailConfigs?.departmentName || config.zeptomail.senderName;
+        const fromAddress = payload?.emailConfigs?.emailFrom || config.zeptomail.senderEmail;
+        const fromName = payload?.emailConfigs?.departmentName || config.zeptomail.senderName;
 
         return this.sendEmail({
             to: [{ email_address: { address: email } }],
