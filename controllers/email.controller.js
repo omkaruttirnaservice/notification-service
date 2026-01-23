@@ -5,6 +5,7 @@ const templates = {
     HALLTICKET_EMAIL_V1: require('../templates/hallTicket.template'),
     SUMMARY_EMAIL_V1: require('../templates/summary.template'),
     FORGOT_OTP_EMAIL_V1: require('../templates/forgotOtp.template'),
+    PAYMENT_DONE_EMAIL_V1: require('../templates/paymentSuccess.template'),
 
     verifyEmailOtp: require('../templates/verifyOtp.template'),
     paymentSuccess: require('../templates/paymentSuccess.template'),
