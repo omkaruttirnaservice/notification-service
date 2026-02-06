@@ -19,7 +19,7 @@ module.exports = {
 				<strong>${data?.emailConfigs?.departmentName}</strong> are live please login and download your exam hallticket.</p>
 
 				<div style="margin:12px auto;">
-					<a href="https://apmcamalner.in" target="_blank" rel="noopener noreferrer"
+					<a href="https://kopbankasso.co.in" target="_blank" rel="noopener noreferrer"
 						style="display:inline-block; padding:9px 14px; border-radius:8px; text-decoration:none; background:#0070f3; color:#fff; font-weight:600;">
 						Download Hall Ticket
 					</a>
