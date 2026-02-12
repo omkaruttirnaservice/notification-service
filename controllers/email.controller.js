@@ -3,6 +3,7 @@ const config = require('../config');
 const templates = {
     REGISTRATION_EMAIL_V1: require('../templates/registration.template'),
     HALLTICKET_EMAIL_V1: require('../templates/hallTicket.template'),
+    PROF_TEST_HT_EMIL_V1: require('../templates/profTestHallTicket.template'),
     SUMMARY_EMAIL_V1: require('../templates/summary.template'),
     FORGOT_OTP_EMAIL_V1: require('../templates/forgotOtp.template'),
     PAYMENT_DONE_EMAIL_V1: require('../templates/paymentSuccess.template'),
