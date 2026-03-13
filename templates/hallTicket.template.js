@@ -10,12 +10,20 @@ module.exports = {
 				</td>
 			</tr>
 
+
 			<tr>
 				<td style="padding:16px 18px;">
 					<p style="margin:6px 0; font-size:14px;"><strong>Dear, </strong> ${data?.first_name?.toUpperCase() || ''} ${data?.last_name?.toUpperCase() || ''}</p>
 
 					<p>We are pleased to inform you that hallticket for 
 					<strong>${data?.emailConfigs?.departmentName}</strong> are live please login and download your exam hallticket.</p>
+
+					<p style="margin:6px 0;">
+						<strong>महत्वाची सूचना:</strong> हॉलतिकीट डाउनलोड करण्यासाठी अधिकृत वेबसाइट 
+						<strong style="background:#fdd989; color:#fff; padding:2px 4px; border-radius:4px;">${data?.emailConfigs?.processBaseUrl}</strong> हीच आहे. 
+						कृपया हॉलतिकीट डाउनलोड करण्यासाठी फक्त या वेबसाइटचा वापर करा. 
+						यासाठी इतर कोणतीही अधिकृत वेबसाइट उपलब्ध नाही.
+					</p>
 
 					<div style="margin:12px auto;">
 						<a href="${data?.emailConfigs?.processBaseUrl}" target="_blank" rel="noopener noreferrer"
@@ -27,23 +35,7 @@ module.exports = {
 			</tr>
 
 
-			<tr>
-				<div style="margin-top:14px; font-size:13px; line-height:1.6;">
-					<p style="margin:4px 0;">
-						<strong>Important:</strong> The official website for downloading the hall ticket is 
-						<strong>${data?.emailConfigs?.processBaseUrl}</strong>. 
-						Please use only this website to download your hall ticket. 
-						There is no other official website for this purpose.
-					</p>
 
-					<p style="margin:6px 0;">
-						<strong>महत्वाची सूचना:</strong> हॉलतिकीट डाउनलोड करण्यासाठी अधिकृत वेबसाइट 
-						<strong>${data?.emailConfigs?.processBaseUrl}</strong> हीच आहे. 
-						कृपया हॉलतिकीट डाउनलोड करण्यासाठी फक्त या वेबसाइटचा वापर करा. 
-						यासाठी इतर कोणतीही अधिकृत वेबसाइट उपलब्ध नाही.
-					</p>
-				</div>
-			</tr>
 
 			<tr>
 			<td style="padding:10px 18px; background:#f8fafc; text-align:center; font-size:12px; color:#94a3b8;">
