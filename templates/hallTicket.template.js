@@ -26,6 +26,25 @@ module.exports = {
 				</td>
 			</tr>
 
+
+			<tr>
+				<div style="margin-top:14px; font-size:13px; line-height:1.6;">
+					<p style="margin:4px 0;">
+						<strong>Important:</strong> The official website for downloading the hall ticket is 
+						<strong>${data?.emailConfigs?.processBaseUrl}</strong>. 
+						Please use only this website to download your hall ticket. 
+						There is no other official website for this purpose.
+					</p>
+
+					<p style="margin:6px 0;">
+						<strong>महत्वाची सूचना:</strong> हॉलतिकीट डाउनलोड करण्यासाठी अधिकृत वेबसाइट 
+						<strong>${data?.emailConfigs?.processBaseUrl}</strong> हीच आहे. 
+						कृपया हॉलतिकीट डाउनलोड करण्यासाठी फक्त या वेबसाइटचा वापर करा. 
+						यासाठी इतर कोणतीही अधिकृत वेबसाइट उपलब्ध नाही.
+					</p>
+				</div>
+			</tr>
+
 			<tr>
 			<td style="padding:10px 18px; background:#f8fafc; text-align:center; font-size:12px; color:#94a3b8;">
 				This is an automated message — कृपया या ईमेलला थेट उत्तर देऊ नका.
