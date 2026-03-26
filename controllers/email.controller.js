@@ -3,6 +3,7 @@ const config = require('../config');
 const templates = {
     REGISTRATION_EMAIL_V1: require('../templates/registration.template'),
     HALLTICKET_EMAIL_V1: require('../templates/hallTicket.template'),
+    INTERVIEW_EMAIL_SATARA_V1: require('../templates/interviewLetterSatara.template'),
     PROF_TEST_HT_EMIL_V1: require('../templates/profTestHallTicket.template'),
     SUMMARY_EMAIL_V1: require('../templates/summary.template'),
     FORGOT_OTP_EMAIL_V1: require('../templates/forgotOtp.template'),
@@ -11,6 +12,8 @@ const templates = {
     verifyEmailOtp: require('../templates/verifyOtp.template'),
     paymentSuccess: require('../templates/paymentSuccess.template'),
     paymentPending: require('../templates/paymentPending.template'),
+
+    extraNotice: require('../templates/extraNotice.template'),
 };
 
 class EmailController {
@@ -26,7 +29,7 @@ class EmailController {
      * @param {Object} message - The message object from RabbitMQ
      */
     async processMessage(message) {
-        const { templateId, email, payload } = message;
+        const { templateId, email, payload, html = null } = message;
         console.log({ ...payload }, '=message');
 
         // console.log('emailConfigs', emailConfigs);
@@ -36,8 +39,17 @@ class EmailController {
         }
 
         const template = templates[templateId];
-        const subject = template.subject({ ...payload });
-        const htmlBody = template.email({ ...payload });
+
+        let subject;
+        let htmlBody;
+
+        if (html?.subject && html?.mailBody) {
+            subject = html.subject;
+            htmlBody = html.mailBody;
+        } else {
+            htmlBody = template.email({ ...payload });
+            subject = template.subject({ ...payload });
+        }
 
         const fromAddress = payload?.emailConfigs?.emailFrom || config.zeptomail.senderEmail;
         const fromName = payload?.emailConfigs?.departmentName || config.zeptomail.senderName;
