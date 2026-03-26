@@ -58,6 +58,7 @@ const processBatch = async () => {
         const channel = getChannel();
         let content;
 
+        // incomming buffer parsing
         try {
             content = JSON.parse(msg.content.toString());
         } catch (e) {
@@ -71,6 +72,7 @@ const processBatch = async () => {
             return;
         }
 
+        // send actual email
         try {
             await emailController.processMessage(content);
             channel.ack(msg);
